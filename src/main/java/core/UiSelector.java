@@ -69,4 +69,8 @@ public class UiSelector {
         return this;
     }
 
+    public UiObject makeUiObject() {
+        return new UiObject(locator);
+    }
+
 }
