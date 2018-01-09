@@ -1,5 +1,7 @@
+import core.MyLogger;
 import core.UiSelector;
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.log4j.Level;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
@@ -25,6 +27,8 @@ public class Runner {
 //
 //        driver.quit();
 
+        MyLogger.log.setLevel(Level.ALL);
+        MyLogger.log.debug("Test Debug");
 
     }
 }
