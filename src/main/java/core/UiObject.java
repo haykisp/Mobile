@@ -1,7 +1,5 @@
 package core;
-
 import api.android.Android;
-import org.aspectj.weaver.ast.And;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
@@ -12,6 +10,7 @@ public class UiObject {
 
     UiObject(String locator) {
         this.locator = locator;
+        MyLogger.log.debug("Created new UiObject" + this.locator);
     }
 
     private boolean isXpath() {
