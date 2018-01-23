@@ -28,7 +28,7 @@ public class StartUiObjects {
 
     public UiObject slider() {
         if (slider == null)
-            slider = new UiSelector().resourceId("com.betconstruct.bookie:id/tab_layout/[0]").makeUiObject();
+            slider = new UiSelector().resourceId("com.betconstruct.bookie:id/tab_layout").makeUiObject();
         return slider;
     }
 

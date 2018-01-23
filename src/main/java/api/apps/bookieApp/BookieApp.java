@@ -4,6 +4,7 @@ import api.android.Android;
 import api.apps.bookieApp.login.Login;
 import api.apps.bookieApp.start.Start;
 import api.interfaces.Application;
+import core.UiObject;
 
 public class BookieApp implements Application {
 
@@ -21,8 +22,9 @@ public class BookieApp implements Application {
     }
 
     @Override
-    public Object open() {
+    public UiObject open() {
         Android.adb.openAppsActivity(packageId(), activityID());
+//        return Android.app.bookieApp.start;
         return null;
     }
 

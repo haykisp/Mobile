@@ -1,10 +1,27 @@
 package api.apps.bookieApp.login;
 
+import api.android.Android;
+import api.interfaces.Activity;
 import core.MyLogger;
 import org.openqa.selenium.NoSuchElementException;
 
-public class Login {
+public class Login implements Activity {
     public LoginUiObjects uiObject = new LoginUiObjects();
+
+    @Override
+    public Login waitToLoad() {
+        try {
+            MyLogger.log.info("Waiting to load Login screen");
+            uiObject.usernameField().waitToAppear(10);
+            uiObject.passwordField().waitToAppear(10);
+            uiObject.forgotPasswordButton().waitToAppear(10);
+            uiObject.signInButton().waitToAppear(10);
+            uiObject.createAccountButton().waitToAppear(10);
+            return Android.app.bookieApp.login;
+        }catch (AssertionError e){
+            throw new AssertionError("Login screen failed to load/open");
+        }
+    }
 
     public void tapSignInButton() {
         try {

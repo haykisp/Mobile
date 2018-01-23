@@ -61,8 +61,6 @@ public class DriverManager {
         ArrayList<String> devices = getAvailableDevices();
         for (String device : devices) {
             try {
-
-
                 MyLogger.log.info("Trying to create new driver for" + device);
                 Android.driver = new AndroidDriver((host(device)), getCaps(device));
                 Android.adb = new ADB(device);
