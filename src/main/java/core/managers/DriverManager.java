@@ -4,15 +4,22 @@ import api.android.Android;
 import core.ADB;
 import core.MyLogger;
 import io.appium.java_client.android.AndroidDriver;
-import org.aspectj.weaver.ast.And;
+import io.appium.java_client.service.local.AppiumServiceBuilder;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.service.DriverService;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DriverManager {
+
+    private static String nodeJS = "/usr/local/node-v8.9.3-linux-x64/bin/node";
+    private static String appiumJS = "/usr/local/node-v8.9.3-linux-x64/bin/appium";
+    private static DriverService service;
+    private static String deviceID;
 
     private static HashMap<String, URL> hosts;
     private static String unlockPackage = "io.appium.unlock";
@@ -57,11 +64,25 @@ public class DriverManager {
         return availableDevices;
     }
 
+
+    private static DriverService createService() throws MalformedURLException {
+        service = new AppiumServiceBuilder()
+                .usingDriverExecutable(new File(nodeJS))
+                .withAppiumJS(new File(appiumJS))
+                .withIPAddress(host(deviceID).toString().split(":")[1].replace("//", ""))
+                .usingPort(Integer.parseInt(host(deviceID).toString().split(":")[2].replace("/wd/hub", "")))
+                .build();
+        return service;
+    }
+
+
     public static void createDriver() throws MalformedURLException {
         ArrayList<String> devices = getAvailableDevices();
         for (String device : devices) {
             try {
-                MyLogger.log.info("Trying to create new driver for" + device);
+                deviceID = device;
+                MyLogger.log.info("Trying to create new driver for " + device);
+                createService().start();
                 Android.driver = new AndroidDriver((host(device)), getCaps(device));
                 Android.adb = new ADB(device);
                 break;
@@ -74,8 +95,11 @@ public class DriverManager {
     public static void killDriver() {
         if (Android.driver != null) {
             MyLogger.log.info("Killing Android Driver");
+            Android.driver.closeApp();
             Android.driver.quit();
             Android.adb.uninstallApp(unlockPackage);
+            service.stop();
+
         } else MyLogger.log.info("Android driver is not initialized, nothing to kill");
     }
 

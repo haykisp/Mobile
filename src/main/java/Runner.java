@@ -1,31 +1,23 @@
-import api.android.Android;
 import core.MyLogger;
 import core.managers.DriverManager;
 import org.apache.log4j.Level;
+import org.junit.runner.JUnitCore;
+import tests.TestPrimer;
 
-import java.net.MalformedURLException;
+import java.io.IOException;
 
 public class Runner {
 
-    public static void main(String[] args) throws MalformedURLException {
-        MyLogger.log.setLevel(Level.DEBUG);
+    public static void main(String[] args) throws IOException {
+
+        MyLogger.log.setLevel(Level.INFO);
         try {
             DriverManager.createDriver();
-            Android.app.bookieApp.open();
-            Android.app.bookieApp.start.waitToLoad();
-            Android.app.bookieApp.start.tapSignIn();
-            Android.app.bookieApp.login.writeUsername("hayk.ispiryan@betconstruct.com");
-            Android.app.bookieApp.login.writePassword("");
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
+            JUnitCore.runClasses(TestPrimer.class);
         } finally {
-            Android.driver.pressKeyCode(3);
             DriverManager.killDriver();
         }
+
 
     }
 }
