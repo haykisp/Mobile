@@ -12,24 +12,23 @@ public class Start implements Activity {
     public StartUiObjects uiObject = new StartUiObjects();
 
     @Override
-    public Start waitToLoad() {
+    public Start waitToLoad(int waitTime) {
         try {
             MyLogger.log.info("Waiting to load Start screen");
-            uiObject.signIn().waitToAppear(10);
-            uiObject.createAccount().waitToAppear(10);
-            uiObject.slide().waitToAppear(10);
-            uiObject.slider().waitToAppear(10);
+            uiObject.signIn().waitToAppear(waitTime);
+            uiObject.createAccount().waitToAppear(waitTime);
+            uiObject.slide().waitToAppear(waitTime);
+            uiObject.slider().waitToAppear(waitTime);
             return Android.app.bookieApp.start;
         } catch (AssertionError e) {
             throw new AssertionError("Start screen failed to load/open");
         }
     }
 
-    public Login tapSignIn() {
+    public void tapSignIn() {
         try {
             MyLogger.log.info("Tapping on the SignIn Button");
             uiObject.signIn().tap();
-            return Android.app.bookieApp.login.waitToLoad();
         } catch (NoSuchElementException e) {
             throw new AssertionError("Can't tap SignIn Button, element absent or blocked");
         }

@@ -9,24 +9,24 @@ public class Login implements Activity {
     public LoginUiObjects uiObject = new LoginUiObjects();
 
     @Override
-    public Login waitToLoad() {
+    public Login waitToLoad(int waitTime) {
         try {
             MyLogger.log.info("Waiting to load Login screen");
-            uiObject.usernameField().waitToAppear(10);
-            uiObject.passwordField().waitToAppear(10);
-            uiObject.forgotPasswordButton().waitToAppear(10);
-            uiObject.signInButton().waitToAppear(10);
-            uiObject.createAccountButton().waitToAppear(10);
+            uiObject.fieldUsername().waitToAppear(waitTime);
+            uiObject.fieldPassword().waitToAppear(waitTime);
+            uiObject.buttonForgotPassword().waitToAppear(waitTime);
+            uiObject.buttonSignIn().waitToAppear(waitTime);
+            uiObject.buttonCreateAccount().waitToAppear(waitTime);
             return Android.app.bookieApp.login;
         }catch (AssertionError e){
             throw new AssertionError("Login screen failed to load/open");
         }
     }
 
-    public void tapSignInButton() {
+    public void tapSignIn() {
         try {
             MyLogger.log.info("Tapping on the SignIn Button");
-            uiObject.signInButton().tap();
+            uiObject.buttonSignIn().tap();
         } catch (NoSuchElementException e) {
             throw new AssertionError("Can't tap SignIn Button, element absent or blocked");
         }
@@ -35,7 +35,7 @@ public class Login implements Activity {
     public void tapCreateAccount() {
         try {
             MyLogger.log.info("Tapping on the CreateAccount Button");
-            uiObject.createAccountButton().tap();
+            uiObject.buttonCreateAccount().tap();
         } catch (NoSuchElementException e) {
             throw new AssertionError("Can't tap CreateAccount Button, element absent or blocked");
         }
@@ -44,7 +44,7 @@ public class Login implements Activity {
     public void tapForgotPassword() {
         try {
             MyLogger.log.info("Tapping on the Forgot Password Button");
-            uiObject.forgotPasswordButton().tap();
+            uiObject.buttonForgotPassword().tap();
         } catch (NoSuchElementException e) {
             throw new AssertionError("Can't tap Forgot Password Button, element absent or blocked");
         }
@@ -53,9 +53,8 @@ public class Login implements Activity {
     public void writeUsername(String Text) {
         try {
             MyLogger.log.info("Writing in Username field");
-//            uiObject.usernameField().tap();
-            uiObject.usernameField().clearText();
-            uiObject.usernameField().typeText(Text);
+            uiObject.fieldUsername().clearText();
+            uiObject.fieldUsername().typeText(Text);
         } catch (NoSuchElementException e) {
             throw new AssertionError("Can't write in Username field, element absent or blocked");
         }
@@ -64,9 +63,9 @@ public class Login implements Activity {
     public void writePassword(String Text) {
         try {
             MyLogger.log.info("Writing in Password field");
-//            uiObject.passwordField().tap();
-            uiObject.passwordField().clearText();
-            uiObject.passwordField().typeText(Text);
+//            uiObject.fieldPassword().tap();
+            uiObject.fieldPassword().clearText();
+            uiObject.fieldPassword().typeText(Text);
         } catch (NoSuchElementException e) {
             throw new AssertionError("Can't write in Password field, element absent or blocked");
         }

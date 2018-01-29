@@ -5,19 +5,19 @@ import core.UiSelector;
 
 public class StartUiObjects {
     private static UiObject
-            signIn,
-            createAccount,
+            buttonSignIn,
+            buttonCreateAccount,
             slide,
             slider;
 
-    public UiObject signIn() {
-        if (signIn == null) signIn = new UiSelector().text("Sign in").makeUiObject();
-        return signIn;
+    public UiObject buttonSignIn() {
+        if (buttonSignIn == null) buttonSignIn = new UiSelector().text("Sign in").makeUiObject();
+        return buttonSignIn;
     }
 
-    public UiObject createAccount() {
-        if (createAccount == null) createAccount = new UiSelector().text("Create Account").makeUiObject();
-        return createAccount;
+    public UiObject buttonCreateAccount() {
+        if (buttonCreateAccount == null) buttonCreateAccount = new UiSelector().text("Create Account").makeUiObject();
+        return buttonCreateAccount;
     }
 
     public UiObject slide() {

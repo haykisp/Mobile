@@ -1,5 +1,5 @@
 package api.interfaces;
 
 public interface Activity {
-    Object waitToLoad();
+    Object waitToLoad(int waitTime);
 }
