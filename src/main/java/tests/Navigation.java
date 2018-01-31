@@ -44,5 +44,7 @@ public class Navigation extends TestManager {
         Assert.assertTrue(bookieApp.login.uiObject.buttonForgotPassword().exists());
         Assert.assertTrue(bookieApp.login.uiObject.buttonSignIn().exists());
         Assert.assertTrue(bookieApp.login.uiObject.buttonCreateAccount().exists());
+        bookieApp.login.writeUsername("testbeta");
+        bookieApp.login.writePassword("Isp463125");
     }
 }
