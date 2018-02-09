@@ -16,8 +16,8 @@ import java.util.HashMap;
 
 public class DriverManager {
 
-    private static String nodeJS = "/usr/local/node-v8.9.3-linux-x64/bin/node";
-    private static String appiumJS = "/usr/local/node-v8.9.3-linux-x64/bin/appium";
+    private static String nodeJS = "/usr/local/node-v8.9.4-linux-x64/bin/node";
+    private static String appiumJS = "/usr/local/node-v8.9.4-linux-x64/bin/appium";
     private static DriverService service;
     private static String deviceID;
 
@@ -25,11 +25,11 @@ public class DriverManager {
     private static String unlockPackage = "io.appium.unlock";
 
     private static DesiredCapabilities getCaps(String deviceID) {
-        MyLogger.log.info("Creating drivercaps for device: " + deviceID);
+        MyLogger.log.info("Creatig drivercaps for device: " + deviceID);
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("deviceName", deviceID);
         caps.setCapability("platformName", "Android");
-        caps.setCapability("app", "/usr/local/node-v8.9.3-linux-x64/lib/node_modules/appium/node_modules/appium-unlock/bin/unlock_apk-debug.apk");
+        caps.setCapability("app", "/usr/local/node-v8.9.4-linux-x64/lib/node_modules/appium/node_modules/appium-unlock/bin/unlock_apk-debug.apk");
         caps.setCapability("appPackage", "com.betconstruct.bookie");
         caps.setCapability("appActivity", "com.betconstruct.bookie.activities.SplashActivity");
         if (deviceID.equals("BH905T5H06")) {

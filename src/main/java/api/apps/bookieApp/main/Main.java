@@ -7,7 +7,7 @@ import org.openqa.selenium.NoSuchElementException;
 
 public class Main implements Activity {
 
-    MainUiObjects uiObject = new MainUiObjects();
+    public MainUiObjects uiObject = new MainUiObjects();
 
     @Override
     public Object waitToLoad(int waitTime) {
@@ -19,7 +19,7 @@ public class Main implements Activity {
             uiObject.actionMore().waitToAppear(waitTime);
             uiObject.buttonFab().waitToAppear(waitTime);
             uiObject.buttonSearch().waitToAppear(waitTime);
-            return Android.app.bookieApp.login;
+            return Android.app.bookieApp.main;
         } catch (AssertionError e) {
             throw new AssertionError("Main screen failed to load/open");
         }
