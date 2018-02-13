@@ -8,11 +8,10 @@ public class MainUiObjects {
     private static UiObject
             actionExplore,
             actionProfile,
-            actionBetCenter,
             actionMore,
+            actionBetCenter,
             buttonFab,
-            buttonSearch,
-            fieldSearch;
+            windowBookmakers;
 
     public UiObject actionExplore() {
         if (actionExplore == null)
@@ -26,33 +25,20 @@ public class MainUiObjects {
         return actionProfile;
     }
 
-//    public UiObject actionBetCenter() {
-//        if (actionBetCenter == null) actionBetCenter = new UiSelector().text("Sign in").makeUiObject();
-//        return actionBetCenter;
-//    }
-
     public UiObject actionMore() {
-        if (actionMore == null) actionMore = new UiSelector().resourceId("com.betconstruct.bookie:id/navigation").xPath("[0]/2").makeUiObject();
+        if (actionMore == null)
+            actionMore = new UiSelector().resourceId("com.betconstruct.bookie:id/action_more").makeUiObject();
         return actionMore;
     }
 
     public UiObject buttonFab() {
         if (buttonFab == null)
-            buttonFab = new UiSelector().resourceId("com.betconstruct.bookie:id/action_more").makeUiObject();
+            buttonFab = new UiSelector().resourceId("com.betconstruct.bookie:id/fab").makeUiObject();
         return buttonFab;
     }
-
-    public UiObject buttonSearch() {
-        if (buttonSearch == null)
-            buttonSearch = new UiSelector().resourceId("com.betconstruct.bookie:id/search_button").makeUiObject();
-        return buttonSearch;
+    public UiObject windowBookmakers() {
+        if (windowBookmakers == null)
+            windowBookmakers = new UiSelector().resourceId("com.betconstruct.bookie:id/recycle_view").makeUiObject();
+        return windowBookmakers;
     }
-
-    public UiObject fieldSearch() {
-        if (fieldSearch == null)
-            fieldSearch = new UiSelector().resourceId("com.betconstruct.bookie:id/search_src_text").makeUiObject();
-        return fieldSearch;
-    }
-
-
 }
